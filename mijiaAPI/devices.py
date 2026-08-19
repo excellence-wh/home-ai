@@ -314,7 +314,7 @@ def get_device_info(device_model: str, cache_path: Optional[Union[str, Path]] = 
     product = content["props"]["product"]
     name = product["name"]
     model = product["model"]
-    i18n_zh = content["props"]["i18n"]["zh_cn"]
+    i18n_zh = content["props"].get("i18n", {}).get("zh_cn", {})
     result = {
         "version": device_info_version,
         "name": name,
