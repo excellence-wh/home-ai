@@ -2,6 +2,12 @@
 
 本文档记录了项目的 v1.3.7 以来的重要变更。
 
+## [4.2.1](https://github.com/Do1e/mijia-api/compare/v4.2.0...v4.2.1) - 2026-08-19
+
+### bugfix
+
+- 修复 `get_device_info` 获取不含中文翻译的设备信息（如 `lumi.gateway.v3`）时因 `i18n.zh_cn` 缺失而抛出 `KeyError` 崩溃的问题，无中文翻译时描述回退为英文
+
 ## [4.2.0](https://github.com/Do1e/mijia-api/compare/v4.1.3...v4.2.0) - 2026-07-24
 
 ### improvement
