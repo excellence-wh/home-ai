@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# dependencies
+node_modules/
+
 # data
 .mijia-api-data/
 
@@ -18,6 +21,8 @@ wheels/
 # har files
 *.har
 
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
 # VitePress
-node_modules/
 /.vitepress/

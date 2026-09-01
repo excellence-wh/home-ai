@@ -5,39 +5,29 @@
 ## 启动 MCP server
 
 ```bash
-uvx home-ai mcp
+# 仓库内（认证文件默认 ~/.config/mijia-api/auth.json）
+bun src/mcp.ts
 
 # 或指定认证文件路径
-uvx home-ai mcp -p /path/to/auth.json
+bun src/mcp.ts -p /path/to/auth.json
 ```
 
 ## 客户端配置
 
-在 MCP 客户端（如 Claude Desktop、Cursor）的配置文件中添加：
+在 MCP 客户端（如 Claude Desktop、Cursor）的配置文件中添加（`<repo>` 为 home-ai 仓库绝对路径）：
 
 ```json
 {
   "mcpServers": {
     "home-ai": {
-      "command": "uvx",
-      "args": ["home-ai", "mcp"]
+      "command": "bun",
+      "args": ["<repo>/src/mcp.ts", "-p", "/path/to/auth.json"]
     }
   }
 }
 ```
 
-指定认证文件路径时：
-
-```json
-{
-  "mcpServers": {
-    "home-ai": {
-      "command": "uvx",
-      "args": ["home-ai", "mcp", "-p", "/path/to/auth.json"]
-    }
-  }
-}
-```
+> 无需认证文件时省略 `-p` 参数，进入后可用 `login` 工具在会话内扫码。
 
 ## 可用工具
 

@@ -1,14 +1,14 @@
 # Agent Skill
 
-仓库内置了 home-ai 的 agent skill 定义（[`skills/SKILL.md`](https://github.com/excellence-wh/home-ai/blob/main/skills/SKILL.md)），供 AI 助手（如 opencode、Claude Code 等）安全地通过 `uvx home-ai` CLI 控制米家设备。
+仓库内置了 home-ai 的 agent skill 定义（[`skills/SKILL.md`](https://github.com/excellence-wh/home-ai/blob/main/skills/SKILL.md)），供 AI 助手（如 opencode、Claude Code 等）安全地通过 `home-ai` CLI 控制米家设备。
 
 ## Skill 是什么
 
-Skill 是一段提供给 LLM 的“操作指南”：告诉模型哪些命令可以调用、哪些命令禁止调用、以及典型工作流。LLM 读取后会通过 bash 工具执行 `uvx home-ai ...`，从而控制你的米家设备，而无需你编写 Python 代码或手动查文档。
+Skill 是一段提供给 LLM 的“操作指南”：告诉模型哪些命令可以调用、哪些命令禁止调用、以及典型工作流。LLM 读取后会通过 bash 工具执行 `home-ai ...`，从而控制你的米家设备，而无需你编写 Python 代码或手动查文档。
 
 ## 前置条件
 
-skill 通过 `uvx home-ai` 调用 CLI，依赖 [uv](https://docs.astral.sh/uv/) 来按需拉取并运行 home-ai，无需手动安装 Python 或 home-ai。请先安装 uv：
+skill 通过 `home-ai` CLI 调用（Bun+TypeScript 实现）。在仓库内 `bun install` 后 `bun link` 使 `home-ai` 可用；或用 `bun <repo>/src/cli.ts` 直接调用。先确保已安装 [Bun](https://bun.sh)：
 
 ::: code-group
 
@@ -84,7 +84,7 @@ mkdir -p ~/.codex/skills/home-ai && curl -fsSL https://raw.githubusercontent.com
 
 skill 对 LLM 设定了明确的边界，避免会话卡死：
 
-1. **禁止调用 `login`**：它会在终端打印二维码并阻塞等待扫码，导致会话挂起。需要登录时，skill 会提醒你自行执行 `uvx home-ai login -p [path]`。
+1. **禁止调用 `login`**：它会在终端打印二维码并阻塞等待扫码，导致会话挂起。需要登录时，skill 会提醒你自行执行 `home-ai login -p [path]`。
 2. **禁止调用 `mcp`**：它会启动长时间运行的 stdio MCP server，永久阻塞。该命令仅供 MCP 客户端配置使用。
 3. 其余命令（`-l`/`--list_devices`、`--list_homes`、`--list_scenes`、`--list_consumable_items`、`--run_scene`、`--get_device_info`、`get`、`set`、`action`、`statistics`、`run`）均为非阻塞，可直接调用。
 4. 当命令以退出码 1 退出并提示 `请调用 'home-ai login' 进行扫描登录` 时，说明认证缺失/损坏/过期，模型会转告你执行登录命令而非自行修复。
@@ -103,25 +103,25 @@ skill 对 LLM 设定了明确的边界，避免会话卡死：
 
 1. **列出设备**，获取名称和 model：
    ```bash
-   uvx home-ai -l
+   home-ai -l
    ```
 2. **查看设备规格**（无需登录，发现可用的 `--prop_name` 和 `--action_name`）：
    ```bash
-   uvx home-ai --get_device_info yeelink.light.lamp4
+   home-ai --get_device_info yeelink.light.lamp4
    ```
 3. **获取/设置属性**：
    ```bash
-   uvx home-ai get --dev_name "卧室台灯" --prop_name "brightness"
-   uvx home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
-   uvx home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
+   home-ai get --dev_name "卧室台灯" --prop_name "brightness"
+   home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
+   home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
    ```
 4. **执行设备动作**：
    ```bash
-   uvx home-ai action --dev_name "卧室台灯" --action_name toggle
+   home-ai action --dev_name "卧室台灯" --action_name toggle
    ```
 5. **获取统计数据**：
    ```bash
-   uvx home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
+   home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
    ```
 
    统计接口仅支持部分设备，`key` 和 `data_type` 必须按型号确定。`7.1` 是

@@ -25,7 +25,7 @@ features:
   - title: 高级设备封装
     details: mijiaDevice 类让你像操作对象一样控制设备，无需关心 siid/piid 细节。
   - title: CLI 命令行
-    details: 提供命令行工具，直接在终端控制设备，支持 uvx 免安装运行。
+    details: 提供命令行工具，直接在终端控制设备，Bun 直接运行，无需编译。
   - title: MCP Server & Agent Skill
     details: 内置 MCP Server（支持会话内二维码登录）与 Agent Skill，让 LLM 与 AI 助手控制你的米家设备。
   - title: 场景与耗材

@@ -2,21 +2,19 @@
 
 ## 安装
 
-## 从 uv 安装（推荐）
+## 从 Bun 安装（推荐）
 
-使用 [uv](https://docs.astral.sh/uv/) 以独立工具方式安装，无需管理虚拟环境，`home-ai` 命令全局可用：
-
-```bash
-uv tool install home-ai
-```
-
-## AUR（Arch User Repository）
-
-如果你使用 Arch Linux 或基于 Arch 的发行版，可以通过 AUR 安装：
+在仓库内 `bun install` 后 `bun link`，`home-ai` 命令即全局可用；或直接用
+`bun <repo路径>/src/cli.ts`。
 
 ```bash
-yay -S python-mijia-api
+bun install
+bun link
 ```
+
+## 其他平台
+
+如果你使用 Arch Linux 或基于 Arch 的发行版，可通过系统包管理安装 Bun 后使用本仓库。
 
 ## 主命令
 

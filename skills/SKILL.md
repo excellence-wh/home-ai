@@ -1,17 +1,18 @@
 ---
 name: home-ai
 description: |
-  通过 `uvx home-ai` CLI 控制米家智能设备。适用于：列出米家设备/家庭/场景/耗材、
+  通过 `home-ai` CLI 控制米家智能设备。适用于：列出米家设备/家庭/场景/耗材、
   获取或设置设备属性、执行设备动作、查询统计数据、运行场景、通过小爱音箱执行自然语言命令。
   触发词包括"控制米家设备"、"米家"、"mijia"、"列出设备"、"设置亮度"、"打开灯"、
   "执行动作"、"统计数据"、"耗电量"、"运行场景"、"小爱音箱"、"耗材"、"场景"。
-allowed-tools: Bash(uvx home-ai:*)
+allowed-tools: Bash(home-ai:*)
 ---
 
 # home-ai CLI
 
-通过 `uvx home-ai` 命令行工具控制米家智能设备。所有命令均通过 `uvx` 运行，
-无需本地安装（首次运行时自动下载包）。CLI 实现位于 `home_ai/__main__.py`。
+通过 `home-ai` 命令行工具控制米家智能设备（Bun+TypeScript 实现，CLI 位于 `src/cli.ts`）。
+在仓库内执行 `bun install` 后，运行 `bun link` 即可让 `home-ai` 命令全局可用；或直接用
+`bun <仓库路径>/src/cli.ts` 调用。
 
 ## 行为规则（关键）
 
@@ -19,7 +20,7 @@ allowed-tools: Bash(uvx home-ai:*)
    扫码，会导致会话一直挂起。如果需要登录，**停止操作**并提醒用户自行执行：
 
    ```
-   uvx home-ai login -p [path]
+   home-ai login -p [path]
    ```
 
 2. **绝对不要调用 `mcp`。** 它会启动一个长时间运行的 stdio MCP server，永久阻塞。
@@ -32,16 +33,15 @@ allowed-tools: Bash(uvx home-ai:*)
    的信息，说明认证文件缺失、损坏或已过期。**不要尝试自行修复**，提醒用户执行上述
    登录命令后停止。
 
-5. 使用 `bash` 工具调用 `uvx` 命令时设置较长超时——首次运行可能需要下载包。
 
 ## 认证文件
 
 认证文件默认路径为 `~/.config/mijia-api/auth.json`，可用 `-p /path/to/auth.json` 覆盖。
 
 - **全局参数**（`--list_devices`、`--list_homes` 等）：`-p` 放在参数前：
-  `uvx home-ai -p /path --list_devices`
+  `home-ai -p /path --list_devices`
 - **子命令**（`get`、`set`、`action`、`statistics`、`run`）：`-p` 放在子命令后：
-  `uvx home-ai get -p /path --dev_name "台灯" --prop_name "brightness"`
+  `home-ai get -p /path --dev_name "台灯" --prop_name "brightness"`
 
 认证失效时，`init_api` 会打印提示信息并以退出码 `1` 退出，提示用户运行
 `home-ai login`。将该提示转达给用户——**不要自行运行 `login`**。
@@ -72,32 +72,32 @@ allowed-tools: Bash(uvx home-ai:*)
 
 1. **列出设备**，获取设备名称和 model：
    ```
-   uvx home-ai -l
+   home-ai -l
    ```
    输出每个设备的 `name`、`did`、`model`、`online` 状态。
 
 2. **按 model 查看设备支持的属性和动作**（无需登录）：
    ```
-   uvx home-ai --get_device_info yeelink.light.lamp4
+   home-ai --get_device_info yeelink.light.lamp4
    ```
    返回 JSON，描述设备的属性和动作。用于查找 `get`/`set` 可用的 `--prop_name` 和
    `action` 可用的 `--action_name`。
 
 3. **获取或设置**属性（按设备名称）：
    ```
-   uvx home-ai get --dev_name "卧室台灯" --prop_name "brightness"
-   uvx home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
-   uvx home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
+   home-ai get --dev_name "卧室台灯" --prop_name "brightness"
+   home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
+   home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
    ```
 
 4. **执行设备动作**：
    ```
-   uvx home-ai action --dev_name "卧室台灯" --action_name toggle
+   home-ai action --dev_name "卧室台灯" --action_name toggle
    ```
 
 5. **获取统计数据**：
    ```
-   uvx home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
+   home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
    ```
 
 ## 命令详情
@@ -105,9 +105,9 @@ allowed-tools: Bash(uvx home-ai:*)
 ### 列出设备
 
 ```
-uvx home-ai -l
-uvx home-ai --list_devices
-uvx home-ai -p /path/to/auth.json -l
+home-ai -l
+home-ai --list_devices
+home-ai -p /path/to/auth.json -l
 ```
 
 列出所有设备（包含共享设备），每项显示 `name`、`did`、`model`、`online` 状态。
@@ -116,55 +116,55 @@ uvx home-ai -p /path/to/auth.json -l
 ### 列出家庭
 
 ```
-uvx home-ai --list_homes
+home-ai --list_homes
 ```
 
 列出家庭及其房间和房间内设备。与 `--list_devices` 组合可显示设备名称而非原始 `did`：
 ```
-uvx home-ai -l --list_homes
+home-ai -l --list_homes
 ```
 
 ### 列出场景
 
 ```
-uvx home-ai --list_scenes
+home-ai --list_scenes
 ```
 
 按家庭列出场景，每项显示 `name`、`scene_id`、创建时间。与 `--list_homes` 组合可避免
 重复请求家庭列表：
 ```
-uvx home-ai --list_homes --list_scenes
+home-ai --list_homes --list_scenes
 ```
 
 ### 运行场景
 
 ```
-uvx home-ai --run_scene "睡眠模式"
-uvx home-ai --run_scene 123456
-uvx home-ai --run_scene "晚安" "睡眠模式"
+home-ai --run_scene "睡眠模式"
+home-ai --run_scene 123456
+home-ai --run_scene "晚安" "睡眠模式"
 ```
 
 接受场景 **ID 或名称**（从完整场景列表中查找）。一次可运行多个场景。与
 `--list_scenes` 组合可避免重复请求场景列表：
 ```
-uvx home-ai --list_scenes --run_scene "睡眠模式"
+home-ai --list_scenes --run_scene "睡眠模式"
 ```
 
 ### 列出耗材
 
 ```
-uvx home-ai --list_consumable_items
+home-ai --list_consumable_items
 ```
 
 按家庭列出耗材（如滤芯寿命、刷头磨损）。与 `--list_homes` 组合可复用家庭映射：
 ```
-uvx home-ai --list_homes --list_consumable_items
+home-ai --list_homes --list_consumable_items
 ```
 
 ### 获取设备规格（无需认证）
 
 ```
-uvx home-ai --get_device_info yeelink.light.lamp4
+home-ai --get_device_info yeelink.light.lamp4
 ```
 
 从公开的 MIoT 规格端点获取设备规格 JSON，返回所有可用属性（含类型和约束）及动作。
@@ -174,9 +174,9 @@ uvx home-ai --get_device_info yeelink.light.lamp4
 ### 获取设备属性
 
 ```
-uvx home-ai get --dev_name "卧室台灯" --prop_name "brightness"
-uvx home-ai get --did 123456 --prop_name "on"
-uvx home-ai get -p /path/auth.json --dev_name "台灯" --prop_name "on"
+home-ai get --dev_name "卧室台灯" --prop_name "brightness"
+home-ai get --did 123456 --prop_name "on"
+home-ai get -p /path/auth.json --dev_name "台灯" --prop_name "on"
 ```
 
 | 参数 | 是否必填 | 说明 |
@@ -191,9 +191,9 @@ uvx home-ai get -p /path/auth.json --dev_name "台灯" --prop_name "on"
 ### 设置设备属性
 
 ```
-uvx home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
-uvx home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
-uvx home-ai set --did 123456 --prop_name "on" --value False
+home-ai set --dev_name "卧室台灯" --prop_name "brightness" --value 60
+home-ai set --dev_name "卧室台灯" --prop_name "on" --value True
+home-ai set --did 123456 --prop_name "on" --value False
 ```
 
 | 参数 | 是否必填 | 说明 |
@@ -209,8 +209,8 @@ uvx home-ai set --did 123456 --prop_name "on" --value False
 ### 执行设备动作
 
 ```
-uvx home-ai action --dev_name "卧室台灯" --action_name toggle
-uvx home-ai action --did 123456 --action_name execute-text-directive --params '{"in":["打开空调",1]}'
+home-ai action --dev_name "卧室台灯" --action_name toggle
+home-ai action --did 123456 --action_name execute-text-directive --params '{"in":["打开空调",1]}'
 ```
 
 | 参数 | 是否必填 | 说明 |
@@ -227,8 +227,8 @@ uvx home-ai action --did 123456 --action_name execute-text-directive --params '{
 ### 获取统计数据
 
 ```
-uvx home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
-uvx home-ai statistics --did 123456 --key 7.1 --data_type stat_day_v3 --limit 30 --time_start 1700000000 --time_end 1702592000
+home-ai statistics --did 123456 --key 7.1 --data_type stat_month_v3
+home-ai statistics --did 123456 --key 7.1 --data_type stat_day_v3 --limit 30 --time_start 1700000000 --time_end 1702592000
 ```
 
 | 参数 | 是否必填 | 说明 |
@@ -256,14 +256,14 @@ https://iot.mi.com/new/doc/accesses/direct-access/extension-development/extensio
 ### 运行（通过小爱音箱执行自然语言）
 
 ```
-uvx home-ai run "打开卧室台灯"
-uvx home-ai run "把亮度调到50%" --wifispeaker_name "卧室小爱"
-uvx home-ai run "关闭所有灯" --quiet
+home-ai run "打开卧室台灯"
+home-ai run "把亮度调到50%" --wifispeaker_name "卧室小爱"
+home-ai run "关闭所有灯" --quiet
 ```
 
 将自然语言指令通过小爱音箱的 `execute-text-directive` 动作执行。未指定
 `--wifispeaker_name` 时，自动选用第一个 model 包含 `xiaomi.wifispeaker` 的设备。
-若未找到小爱音箱，抛出 `ValueError("未找到小爱音箱设备")`。
+若未找到小爱音箱，抛出 `Error("未找到小爱音箱设备")`。
 
 | 参数 | 是否必填 | 说明 |
 |------|----------|------|
@@ -279,7 +279,7 @@ uvx home-ai run "关闭所有灯" --quiet
 | `MIJIA_LOG_LEVEL` | `INFO` | 日志级别：`DEBUG`、`INFO`、`WARNING`、`ERROR`、`CRITICAL` |
 
 ```
-MIJIA_LOG_LEVEL=DEBUG uvx home-ai -l
+MIJIA_LOG_LEVEL=DEBUG home-ai -l
 ```
 
 ## 退出码
@@ -287,4 +287,4 @@ MIJIA_LOG_LEVEL=DEBUG uvx home-ai -l
 - `0`：成功
 - `1`：认证文件缺失/损坏/过期（信息中包含
   `请调用 'home-ai login' 进行扫描登录`），或命令发生未处理错误。看到认证相关提示时，
-  提醒用户运行 `uvx home-ai login -p [path]`。
+  提醒用户运行 `home-ai login -p [path]`。

@@ -132,14 +132,14 @@ home-ai run "把亮度调到50%" --wifispeaker_name "卧室小爱"
 home-ai run "关闭所有灯" --quiet
 ```
 
-## 直接使用 uvx（无需安装）
+## 全局安装 / 免安装运行
 
-如果安装了 `uv` 工具，可以直接使用 `uvx` 运行，无需提前安装 `home-ai`：
+在仓库内 `bun install` 后 `bun link`，`home-ai` 命令全局可用；或直接：
 
 ```bash
-uvx home-ai --help
-uvx home-ai -l
-uvx home-ai get --dev_name "台灯" --prop_name "brightness"
+bun <repo路径>/src/cli.ts --help
+bun <repo路径>/src/cli.ts -l
+bun <repo路径>/src/cli.ts get --dev_name "台灯" --prop_name "brightness"
 ```
 
 ::: tip

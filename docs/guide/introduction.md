@@ -1,13 +1,17 @@
 # 项目简介
 
-米家设备的 API，可以使用代码直接控制米家设备。
+米家设备的 API，使用 **TypeScript + Bun** 实现，可以用代码、CLI、MCP 直接控制米家设备。
+
+> 本仓库是 [Do1e/mijia-api](https://github.com/Do1e/mijia-api) 的自主维护分支，已将原
+> Python 实现全部移植为 Bun+TypeScript（原代码保留在仓库 `archive/` 目录作对照）。
+> 深层的 API 参考页代码示例仍为 Python 风格，但方法名/参数与 TS 版一致，仅需把同步调用改为 `await`。
 
 ## 特性
 
 - **扫码登录**：通过二维码登录米家账号，认证数据自动保存，Token 自动刷新
 - **API 基础调用**：直接使用 siid/piid 获取/设置设备属性、执行设备动作
 - **高级设备封装**：`mijiaDevice` 类提供面向对象的设备控制，无需关心 siid/piid
-- **CLI 命令行工具**：直接在终端控制设备，支持 `uvx` 免安装运行
+- **CLI 命令行工具**：直接在终端控制设备，Bun 直接运行，无需编译
 - **MCP Server**：让 LLM（如 Claude）直接控制米家设备，支持会话内二维码登录
 - **Agent Skill**：内置 AI 助手 skill 定义，让 LLM 通过 CLI 安全控制设备
 - **场景控制**：获取场景列表并执行手动场景
@@ -17,16 +21,16 @@
 
 ## 环境要求
 
-- Python >= 3.10
+- [Bun](https://bun.sh) >= 1.0
 
 ## 链接
 
 - [GitHub 仓库](https://github.com/excellence-wh/home-ai)
-- [PyPI 包](https://pypi.org/project/home-ai/)
 - [GPL-3.0 许可证](https://opensource.org/licenses/GPL-3.0)
 
 ## 致谢
 
 - [janzlan/mijia-api](https://gitee.com/janzlan/mijia-api/tree/master)
+- [Do1e/mijia-api](https://github.com/Do1e/mijia-api)（本项目源自它）
 - [米家 APP 网络请求的抓包、加解密与构造的代码笔记](https://imkero.net/posts/mihome-app-api/)
 - [al-one/hass-xiaomi-miot](https://github.com/al-one/hass-xiaomi-miot)

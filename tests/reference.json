@@ -1,0 +1,19 @@
+{
+  "ssecret": "dGhlLXJlYWwtc3NlY3VyaXR5LWtleS0zMC1jaGFyYWN0ZXJzISE=",
+  "nonce": "c29tZW1hZ2ljLW5vbmNl",
+  "signedNonce": "5FOJJBuB4XK9tSNYI8ZnZCCPvnSleMNPlihbWU66GjU=",
+  "genEncSignature_params": "Os8HCx5zA7P5AiRGQp6HNrq6Cw0=",
+  "encryptRc4": "nhqaaMOASz1zkPhpk5QAOWI=",
+  "decryptRc4_roundtrip": "{\"on\":true}",
+  "generateEncParams": {
+    "data": "nhqaaMOASz1zkPhpk5QAOWI=",
+    "rc4_hash__": "qkvDArrJUmVQhZIH49FgI06jgGB9SeyVnSujNA==",
+    "signature": "cDax9ELU8cph4Ygin8YzRMMkuiA=",
+    "ssecurity": "dGhlLXJlYWwtc3NlY3VyaXR5LWtleS0zMC1jaGFyYWN0ZXJzISE=",
+    "_nonce": "c29tZW1hZ2ljLW5vbmNl"
+  },
+  "decrypt_plain_enc": "nhqTL5XdCD0rkLVd0NRWRmI=",
+  "decrypt_plain": "{\"hello\":\"world\"}",
+  "decrypt_gzip_enc": "+rPzShP58XUTTWlk6Bdg1jX6nGWePp2eEkE/ApzIMA==",
+  "decrypt_gzip": "{\"gz\":true}"
+}
