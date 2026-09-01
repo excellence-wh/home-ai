@@ -18,7 +18,7 @@
 ## 异常处理示例
 
 ```python
-from mijiaAPI import (
+from home_ai import (
     mijiaAPI,
     mijiaDevice,
     LoginError,

@@ -301,7 +301,7 @@ def get_device_info(device_model: str, cache_path: Optional[Union[str, Path]] = 
                 return cached_result
             logger.debug(f"设备信息缓存版本不匹配，重新获取: {cache_file}")
     response = requests.get(device_url + device_model, headers={
-        "User-Agent": f"mijiaAPI/{version}"
+        "User-Agent": f"home-ai/{version}"
     })
     if response.status_code != 200:
         raise GetDeviceInfoError(device_model)

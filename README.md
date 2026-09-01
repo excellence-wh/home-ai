@@ -1,33 +1,28 @@
-# mijiaAPI
+# home-ai
 
 米家 API，可以使用代码、CLI、MCP 直接控制米家设备。
 
-> 🎉 **v4.0.0 版本已支持 MCP**，详见 [MCP 使用文档](https://mijia-api.do1e.com/usage/mcp)  
-> 🎉 **v4.1.0 版本已支持 Agent Skill**，详见 [Agent Skill 使用文档](https://mijia-api.do1e.com/usage/skill)
+> 🎉 **v0.1.0**：支持 MCP 与 Agent Skill，详见 `skills/SKILL.md` 与 `mcp` 子命令。
 
-[![GitHub](https://img.shields.io/badge/GitHub-Do1e%2Fmijia--api-blue)](https://github.com/Do1e/mijia-api)
-[![PyPI](https://img.shields.io/badge/PyPI-mijiaAPI-blue)](https://pypi.org/project/mijiaAPI/)
+本仓库是 [Do1e/mijia-api](https://github.com/Do1e/mijia-api) 的自主维护分支，替换了包名/CLI 并重置版本；底层全部能力与原项目保持一致，许可证仍为 GPL-3.0。
+
+[![GitHub](https://img.shields.io/badge/GitHub-excellence--wh%2Fhome--ai-blue)](https://github.com/excellence-wh/home-ai)
+[![PyPI](https://img.shields.io/badge/PyPI-home--ai-blue)](https://pypi.org/project/home-ai/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-green.svg)](https://opensource.org/licenses/GPL-3.0)
-
-📖 **完整文档请见 [mijia-api.do1e.com](https://mijia-api.do1e.com)**
-
-[常见问题](https://mijia-api.do1e.com/faq) | [更新日志](https://mijia-api.do1e.com/changelog)
 
 ## 安装
 
 > 要求 Python >= 3.10
 
 ```bash
-pip install mijiaAPI
-# Or `uv add mijiaAPI` for uv users
+pip install home-ai
+# Or `uv add home-ai` for uv users
 ```
-
-其他安装方式（源码安装、AUR）请参考[文档](https://mijia-api.do1e.com/guide/installation)。
 
 ## 快速开始
 
 ```python
-from mijiaAPI import mijiaAPI, mijiaDevice
+from home_ai import mijiaAPI, mijiaDevice
 
 # 初始化并扫码登录（认证文件默认保存在 ~/.config/mijia-api/auth.json）
 api = mijiaAPI()
@@ -45,31 +40,32 @@ print(device)
 CLI 用法：
 
 ```bash
-mijiaAPI login                          # 扫码登录
-mijiaAPI -l                             # 列出所有设备
-mijiaAPI set --dev_name "台灯" --prop_name "brightness" --value 60
+home-ai login                          # 扫码登录
+home-ai -l                             # 列出所有设备
+home-ai set --dev_name "台灯" --prop_name "brightness" --value 60
 ```
 
 MCP 用法：
 
-执行 `uvx mijiaAPI login -p /path/to/auth.json` 登录后，在 MCP 客户端配置中添加以下内容即可接入米家：
+执行 `uvx home-ai login -p /path/to/auth.json` 登录后，在 MCP 客户端配置中添加以下内容即可接入米家：
 
 ```json
 {
   "mcpServers": {
-    "mijia-api": {
+    "home-ai": {
       "command": "uvx",
-      "args": ["mijiaAPI", "mcp", "-p", "/path/to/auth.json"]
+      "args": ["home-ai", "mcp", "-p", "/path/to/auth.json"]
     }
   }
 }
 ```
 
-更多用法（API 基础调用、MCP Server、CLI 完整参数、最佳实践等）请查阅[完整文档](https://mijia-api.do1e.com)。
+更多用法（API 基础调用、MCP Server、CLI 完整参数、最佳实践等）请查阅 `docs/` 目录（VitePress 站点）与上方上游文档链接。
 
 ## 致谢
 
 * [janzlan/mijia-api](https://gitee.com/janzlan/mijia-api/tree/master)
+* [Do1e/mijia-api](https://github.com/Do1e/mijia-api)（本项目源自它）
 * [米家 APP 网络请求的抓包、加解密与构造的代码笔记](https://imkero.net/posts/mihome-app-api/)
 * [al-one/hass-xiaomi-miot](https://github.com/al-one/hass-xiaomi-miot)
 
@@ -77,7 +73,7 @@ MCP 用法：
 
 本项目采用 [GPL-3.0](LICENSE) 开源许可证。
 
-**请注意：GPL-3.0 是具有“强传染性”的开源许可证。**  
+**请注意：GPL-3.0 是具有“强传染性”的开源许可证。**
 如果您在您的项目中使用、修改或分发本项目的代码（包括作为库依赖），您的整个项目也**必须**以 GPL-3.0 或兼容许可证开源发布。
 
 ## 免责声明

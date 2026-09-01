@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'mijiaAPI',
-  description: '米家设备的 Python API',
+  title: 'home-ai',
+  description: '米家设备的 Python API（home-ai）',
   lastUpdated: true,
   cleanUrls: true,
 
@@ -24,7 +24,7 @@ export default defineConfig({
         items: [
           { text: '更新日志', link: '/changelog' },
           { text: '关于', link: '/about' },
-          { text: 'GitHub', link: 'https://github.com/Do1e/mijia-api' },
+          { text: 'GitHub', link: 'https://github.com/excellence-wh/home-ai' },
         ],
       },
     ],
@@ -67,12 +67,12 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Do1e/mijia-api' },
+      { icon: 'github', link: 'https://github.com/excellence-wh/home-ai' },
     ],
 
     footer: {
       message: '基于 GPL-3.0 许可证发布',
-      copyright: 'Copyright © 2024-2026 Do1e',
+      copyright: 'Copyright © 2026 Excellence Technology',
     },
 
     outline: {

@@ -1,7 +1,7 @@
 import json
 import time
 
-from mijiaAPI import mijiaAPI
+from home_ai import mijiaAPI
 
 
 api = mijiaAPI(".mijia-api-data/auth.json")

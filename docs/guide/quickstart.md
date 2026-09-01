@@ -1,13 +1,13 @@
 # 快速开始
 
-本页将带你完成 mijiaAPI 的基本使用流程：登录 → 获取设备 → 控制设备。
+本页将带你完成 home-ai 的基本使用流程：登录 → 获取设备 → 控制设备。
 
 ## 登录
 
 首次使用需要通过二维码登录，认证数据将被保存以便后续使用：
 
 ```python
-from mijiaAPI import mijiaAPI
+from home_ai import home-ai
 
 # 初始化API（认证文件默认保存在 ~/.config/mijia-api/auth.json）
 api = mijiaAPI()
@@ -28,7 +28,7 @@ api.login()  # 使用二维码登录
 ## 获取设备列表
 
 ```python
-from mijiaAPI import mijiaAPI
+from home_ai import home-ai
 
 api = mijiaAPI()
 api.login()
@@ -44,7 +44,7 @@ for device in devices:
 使用 `mijiaDevice` 类可以像操作普通对象一样控制设备，无需关心 siid/piid：
 
 ```python
-from mijiaAPI import mijiaAPI, mijiaDevice
+from home_ai import mijiaAPI, mijiaDevice
 
 api = mijiaAPI()
 api.login()
@@ -79,16 +79,16 @@ print(device)
 
 ```bash
 # 扫码登录
-mijiaAPI login
+home-ai login
 
 # 列出所有设备
-mijiaAPI -l
+home-ai -l
 
 # 设置设备属性
-mijiaAPI set --dev_name "台灯" --prop_name "brightness" --value 60
+home-ai set --dev_name "台灯" --prop_name "brightness" --value 60
 
 # 使用 uvx 免安装运行
-uvx mijiaAPI -l
+uvx home-ai -l
 ```
 
 ## 下一步

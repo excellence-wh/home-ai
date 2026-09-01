@@ -4,10 +4,10 @@
 
 ## 从 uv 安装（推荐）
 
-使用 [uv](https://docs.astral.sh/uv/) 以独立工具方式安装，无需管理虚拟环境，`mijiaAPI` 命令全局可用：
+使用 [uv](https://docs.astral.sh/uv/) 以独立工具方式安装，无需管理虚拟环境，`home-ai` 命令全局可用：
 
 ```bash
-uv tool install mijiaAPI
+uv tool install home-ai
 ```
 
 ## AUR（Arch User Repository）
@@ -21,7 +21,7 @@ yay -S python-mijia-api
 ## 主命令
 
 ```
-usage: mijiaAPI [-h] [-v] [-p AUTH_PATH] [--list_homes] [-l]
+usage: home-ai [-h] [-v] [-p AUTH_PATH] [--list_homes] [-l]
                    [--list_scenes] [--list_consumable_items]
                    [--run_scene SCENE_ID/SCENE_NAME [SCENE_ID/SCENE_NAME ...]]
                    [--get_device_info DEVICE_MODEL]
@@ -53,7 +53,7 @@ usage: mijiaAPI [-h] [-v] [-p AUTH_PATH] [--list_homes] [-l]
 二维码登录米家账号。
 
 ```
-usage: mijiaAPI login [-h] [-p AUTH_PATH]
+usage: home-ai login [-h] [-p AUTH_PATH]
 ```
 
 | 参数 | 说明 |
@@ -61,14 +61,14 @@ usage: mijiaAPI login [-h] [-p AUTH_PATH]
 | `-h, --help` | 显示帮助信息并退出 |
 | `-p, --auth_path AUTH_PATH` | 认证文件保存路径 |
 
-`login` 子命令会尝试刷新 token；若仍不可用则在终端打印二维码并阻塞等待扫码。其他子命令（`get`/`set`/`action`/`statistics`/`run`/`mcp` 及全局参数）在认证文件缺失、损坏或失效且刷新失败时，**不会**自动触发登录，而是打印 `请调用 'mijiaAPI login' 进行扫描登录` 并以退出码 1 退出。
+`login` 子命令会尝试刷新 token；若仍不可用则在终端打印二维码并阻塞等待扫码。其他子命令（`get`/`set`/`action`/`statistics`/`run`/`mcp` 及全局参数）在认证文件缺失、损坏或失效且刷新失败时，**不会**自动触发登录，而是打印 `请调用 'home-ai login' 进行扫描登录` 并以退出码 1 退出。
 
 ## 子命令：get
 
 获取设备属性。
 
 ```
-usage: mijiaAPI get [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop_name PROP_NAME
+usage: home-ai get [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop_name PROP_NAME
 ```
 
 | 参数 | 说明 |
@@ -84,7 +84,7 @@ usage: mijiaAPI get [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop
 设置设备属性。
 
 ```
-usage: mijiaAPI set [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop_name PROP_NAME --value VALUE
+usage: home-ai set [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop_name PROP_NAME --value VALUE
 ```
 
 | 参数 | 说明 |
@@ -101,7 +101,7 @@ usage: mijiaAPI set [-h] [-p AUTH_PATH] [--did DID] [--dev_name DEV_NAME] --prop
 按设备规格中的动作名执行设备动作。
 
 ```
-usage: mijiaAPI action [-h] [-p AUTH_PATH] (--did DID | --dev_name DEV_NAME)
+usage: home-ai action [-h] [-p AUTH_PATH] (--did DID | --dev_name DEV_NAME)
                        --action_name ACTION_NAME [--params PARAMS]
 ```
 
@@ -119,7 +119,7 @@ usage: mijiaAPI action [-h] [-p AUTH_PATH] (--did DID | --dev_name DEV_NAME)
 获取设备统计数据。
 
 ```
-usage: mijiaAPI statistics [-h] [-p AUTH_PATH] --did DID --key KEY
+usage: home-ai statistics [-h] [-p AUTH_PATH] --did DID --key KEY
                            --data_type DATA_TYPE [--limit LIMIT]
                            [--time_start TIME_START] [--time_end TIME_END]
 ```
@@ -145,7 +145,7 @@ usage: mijiaAPI statistics [-h] [-p AUTH_PATH] --did DID --key KEY
 使用自然语言描述你的需求，通过小爱音箱执行。
 
 ```
-usage: mijiaAPI run [-h] [-p AUTH_PATH]
+usage: home-ai run [-h] [-p AUTH_PATH]
                        [--wifispeaker_name WIFISPEAKER_NAME] [--quiet]
                        PROMPT
 ```
@@ -163,7 +163,7 @@ usage: mijiaAPI run [-h] [-p AUTH_PATH]
 启动 MCP server（stdio 传输）。
 
 ```
-usage: mijiaAPI mcp [-h] [-p AUTH_PATH]
+usage: home-ai mcp [-h] [-p AUTH_PATH]
 ```
 
 | 参数 | 说明 |

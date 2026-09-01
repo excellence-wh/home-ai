@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: mijiaAPI
+  name: home-ai
   text: 米家设备 Python API
   tagline: 使用代码直接控制米家设备，支持 CLI、MCP Server 与高级设备封装
   image:
     src: /logo.png
-    alt: mijiaAPI
+    alt: home-ai
   actions:
     - theme: brand
       text: 快速开始
@@ -17,7 +17,7 @@ hero:
       link: /guide/introduction
     - theme: alt
       text: GitHub
-      link: https://github.com/Do1e/mijia-api
+      link: https://github.com/excellence-wh/home-ai
 
 features:
   - title: 扫码登录

@@ -184,7 +184,7 @@ value = json.loads(item["value"])[0]
 ::: warning 已知限制
 - 统计接口仅支持部分设备，不同型号可能使用不同 API。
 - `key` 和 `data_type` 必须根据设备型号确定，不能假定所有设备都支持 `"7.1"` 或 `_v3` 类型。
-- 相关讨论见 [issue #46](https://github.com/Do1e/mijia-api/issues/46)。
+- 相关讨论见 [issue #46](https://github.com/excellence-wh/home-ai/issues/46)。
 :::
 
 参考：[米家统计接口文档](https://iot.mi.com/new/doc/accesses/direct-access/extension-development/extension-functions/statistical-interface)。

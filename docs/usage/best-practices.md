@@ -17,7 +17,7 @@ value = device.get('brightness')
 在使用 API 之前，您可以通过以下方式查询设备支持的属性和动作：
 
 ```python
-from mijiaAPI import get_device_info
+from home_ai import get_device_info
 
 # 从米家规格平台获取设备信息
 device_info = get_device_info('yeelink.light.lamp4')
@@ -83,7 +83,7 @@ api.login()
 在使用过程中可能遇到各种异常，以下是常见的异常类型及处理方式：
 
 ```python
-from mijiaAPI import (
+from home_ai import (
     mijiaAPI,
     mijiaDevice,
     LoginError,

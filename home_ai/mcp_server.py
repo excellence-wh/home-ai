@@ -14,7 +14,7 @@ from .logger import logger
 from .version import version
 
 
-mcp = FastMCP("mijia-api", version=version)
+mcp = FastMCP("home-ai", version=version)
 
 _api: Optional[mijiaAPI] = None
 _auth_path: Optional[Path] = None

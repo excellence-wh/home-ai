@@ -1,14 +1,14 @@
 # MCP Server
 
-`mijiaAPI` 提供了 MCP (Model Context Protocol) server，可以让 LLM（如 Claude）直接控制米家设备，无需编写代码。
+`home-ai` 提供了 MCP (Model Context Protocol) server，可以让 LLM（如 Claude）直接控制米家设备，无需编写代码。
 
 ## 启动 MCP server
 
 ```bash
-uvx mijiaAPI mcp
+uvx home-ai mcp
 
 # 或指定认证文件路径
-uvx mijiaAPI mcp -p /path/to/auth.json
+uvx home-ai mcp -p /path/to/auth.json
 ```
 
 ## 客户端配置
@@ -18,9 +18,9 @@ uvx mijiaAPI mcp -p /path/to/auth.json
 ```json
 {
   "mcpServers": {
-    "mijia-api": {
+    "home-ai": {
       "command": "uvx",
-      "args": ["mijiaAPI", "mcp"]
+      "args": ["home-ai", "mcp"]
     }
   }
 }
@@ -31,9 +31,9 @@ uvx mijiaAPI mcp -p /path/to/auth.json
 ```json
 {
   "mcpServers": {
-    "mijia-api": {
+    "home-ai": {
       "command": "uvx",
-      "args": ["mijiaAPI", "mcp", "-p", "/path/to/auth.json"]
+      "args": ["home-ai", "mcp", "-p", "/path/to/auth.json"]
     }
   }
 }
@@ -70,7 +70,7 @@ MCP server 暴露以下工具供 LLM 调用：
 
 工具返回 JSON 编码的统计条目列表，每项通常包含 Unix 秒级时间戳 `time` 和字符串
 `value`。`value` 可能仍是 JSON 数组字符串，例如 `"[48.476]"`。统计接口仅支持部分设备，
-不同型号可能使用不同 API，详见 [issue #46](https://github.com/Do1e/mijia-api/issues/46) 和
+不同型号可能使用不同 API，详见 [issue #46](https://github.com/excellence-wh/home-ai/issues/46) 和
 [米家统计接口文档](https://iot.mi.com/new/doc/accesses/direct-access/extension-development/extension-functions/statistical-interface)。
 
 ## 会话内登录流程

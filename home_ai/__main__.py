@@ -289,13 +289,13 @@ def init_api(auth_path: Path) -> mijiaAPI:
         auth_path = auth_path / "auth.json"
     if not auth_path.exists():
         print(f"认证文件不存在: {auth_path}")
-        print("请调用 'mijiaAPI login' 进行扫描登录")
+        print("请调用 'home-ai login' 进行扫描登录")
         sys.exit(1)
     try:
         api = mijiaAPI(auth_data_path=auth_path)
     except json.JSONDecodeError:
         print(f"认证文件已损坏: {auth_path}")
-        print("请调用 'mijiaAPI login' 进行扫描登录")
+        print("请调用 'home-ai login' 进行扫描登录")
         sys.exit(1)
     if not api.available:
         try:
@@ -304,7 +304,7 @@ def init_api(auth_path: Path) -> mijiaAPI:
             pass
         if not api.available:
             print(f"认证已失效且刷新失败: {auth_path}")
-            print("请调用 'mijiaAPI login' 进行扫描登录")
+            print("请调用 'home-ai login' 进行扫描登录")
             sys.exit(1)
     return api
 

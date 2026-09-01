@@ -5,7 +5,7 @@
 ## 初始化设备
 
 ```python
-from mijiaAPI import mijiaAPI, mijiaDevice
+from home_ai import mijiaAPI, mijiaDevice
 
 api = mijiaAPI(".mijia-api-data/auth.json")
 api.login()
@@ -90,7 +90,7 @@ value = device.get('brightness')
 在使用 API 之前，您可以通过以下方式查询设备支持的属性和动作：
 
 ```python
-from mijiaAPI import get_device_info
+from home_ai import get_device_info
 
 # 从米家规格平台获取设备信息
 device_info = get_device_info('yeelink.light.lamp4')

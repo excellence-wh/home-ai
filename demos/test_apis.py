@@ -2,7 +2,7 @@ import json
 import logging
 import time
 
-from mijiaAPI import mijiaAPI
+from home_ai import mijiaAPI
 
 
 logging.getLogger("mijiaAPI").setLevel(logging.DEBUG)

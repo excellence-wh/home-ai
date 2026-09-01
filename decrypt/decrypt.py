@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from mijiaAPI import decrypt
+from home_ai import decrypt
 
 
 def parse_args():

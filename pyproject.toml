@@ -1,8 +1,8 @@
 [project]
-name = "mijiaAPI"
+name = "home-ai"
 dynamic = ["version"]
-description = "A Python API for Xiaomi Mijia"
-authors = [{ name = "Do1e", email = "i@do1e.cn" }]
+description = "A Python API for Xiaomi Mijia (home-ai)"
+authors = [{ name = "Excellence Technology", email = "excellence.wh@outlook.com" }]
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 license = "GPL-3.0-or-later"
@@ -21,17 +21,17 @@ classifiers = [
 ]
 
 [project.scripts]
-mijiaAPI = "mijiaAPI.__main__:cli"
+home-ai = "home_ai.__main__:cli"
 
 [tool.setuptools.packages.find]
-include = ["mijiaAPI"]
+include = ["home_ai"]
 
 [tool.setuptools.dynamic]
-version = {attr = "mijiaAPI.version.version"}
+version = {attr = "home_ai.version.version"}
 
 [project.urls]
-Homepage = "https://mijia-api.do1e.com/"
-Repository = "https://github.com/Do1e/mijia-api"
+Homepage = "https://github.com/excellence-wh/home-ai"
+Repository = "https://github.com/excellence-wh/home-ai"
 
 [dependency-groups]
 dev = [

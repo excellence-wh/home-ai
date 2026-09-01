@@ -21,8 +21,8 @@
 
 ## 链接
 
-- [GitHub 仓库](https://github.com/Do1e/mijia-api)
-- [PyPI 包](https://pypi.org/project/mijiaAPI/)
+- [GitHub 仓库](https://github.com/excellence-wh/home-ai)
+- [PyPI 包](https://pypi.org/project/home-ai/)
 - [GPL-3.0 许可证](https://opensource.org/licenses/GPL-3.0)
 
 ## 致谢

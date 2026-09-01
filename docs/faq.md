@@ -11,13 +11,13 @@
 
 ## XXX 设备的 XXX 如何获取/设置？
 
-我拥有的设备有限，无法保证能解答这类问题，但也欢迎提交 [issue](https://github.com/Do1e/mijia-api/issues)，可能需要你将设备共享给我进行抓包或者自行抓包给我提供请求和响应，提供 har 文件的话注意自行删除 cookie 等敏感信息。
+我拥有的设备有限，无法保证能解答这类问题，但也欢迎提交 [issue](https://github.com/excellence-wh/home-ai/issues)，可能需要你将设备共享给我进行抓包或者自行抓包给我提供请求和响应，提供 har 文件的话注意自行删除 cookie 等敏感信息。
 
 ## 如何抓包？
 
-小米官方给了一个[抓包教程](https://iot.mi.com/new/doc/accesses/direct-access/extension-development/troubleshooting/packet_capture)，我没试过，不确定是否能行，如果抓包成功数据是加密的，可以使用 [decrypt/decrypt.py](https://github.com/Do1e/mijia-api/blob/main/decrypt/decrypt.py) 解密。
+小米官方给了一个[抓包教程](https://iot.mi.com/new/doc/accesses/direct-access/extension-development/troubleshooting/packet_capture)，我没试过，不确定是否能行，如果抓包成功数据是加密的，可以使用 [decrypt/decrypt.py](https://github.com/excellence-wh/home-ai/blob/main/decrypt/decrypt.py) 解密。
 
-我自己的解决方案是使用一个获取了 root 的手机，安装 [reqable](https://reqable.com/zh-CN/) 进行抓包，导出 HAR 文件后使用 [decrypt/decrypt_har.py](https://github.com/Do1e/mijia-api/blob/main/decrypt/decrypt_har.py) 解密后导入电脑版的 reqable 查看。
+我自己的解决方案是使用一个获取了 root 的手机，安装 [reqable](https://reqable.com/zh-CN/) 进行抓包，导出 HAR 文件后使用 [decrypt/decrypt_har.py](https://github.com/excellence-wh/home-ai/blob/main/decrypt/decrypt_har.py) 解密后导入电脑版的 reqable 查看。
 
 ## 是否可以支持设备回调？
 

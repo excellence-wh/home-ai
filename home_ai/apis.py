@@ -818,7 +818,7 @@ class mijiaAPI():
             获取 lumi.acpartner.mcn04 (米家空调伴侣Pro 万能遥控版) 过去6个月的月度耗电量统计：
 
             >>> import time
-            >>> from mijiaAPI import mijiaAPI
+            >>> from home_ai import mijiaAPI
             >>> api = mijiaAPI(".mijia-api-data/auth.json")
             >>> ret = api.get_statistics({
             ...     "did": "123456",

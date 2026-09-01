@@ -1,6 +1,6 @@
 import logging
 
-from mijiaAPI import mijiaAPI, mijiaDevice
+from home_ai import mijiaAPI, mijiaDevice
 
 
 logging.getLogger("mijiaAPI").setLevel(logging.DEBUG)

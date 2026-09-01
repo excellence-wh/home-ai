@@ -5,7 +5,7 @@
 ## 获取家庭和设备列表
 
 ```python
-from mijiaAPI import mijiaAPI
+from home_ai import mijiaAPI
 
 api = mijiaAPI()
 api.login()
@@ -111,7 +111,7 @@ for item in result:
 
 ::: warning
 统计接口仅支持部分设备，不同型号可能使用不同 API。详见
-[issue #46](https://github.com/Do1e/mijia-api/issues/46) 和
+[issue #46](https://github.com/excellence-wh/home-ai/issues/46) 和
 [米家统计接口文档](https://iot.mi.com/new/doc/accesses/direct-access/extension-development/extension-functions/statistical-interface)。
 :::
 
@@ -120,7 +120,7 @@ for item in result:
 使用 `get_device_info()` 函数可从[米家规格平台](https://home.miot-spec.com/)在线获取设备属性和动作信息：
 
 ```python
-from mijiaAPI import get_device_info
+from home_ai import get_device_info
 
 # 获取设备规格信息
 device_info = get_device_info('yeelink.light.lamp4')  # 米家台灯 1S 的 model
